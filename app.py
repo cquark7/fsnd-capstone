@@ -115,7 +115,7 @@ def create_app(test_config=None):
 
         except Exception as e:
             print('Object creation failed!', e)
-            abort(500)
+            abort(400)
         return jsonify({
             'status': True,
             'author': [author.format()]
@@ -142,8 +142,8 @@ def create_app(test_config=None):
                 index += 1
 
         except Exception as e:
-            print('we couldnt create the object. Reason :', e)
-            abort(500)
+            print('Object creation failed:', e)
+            abort(400)
 
         return jsonify({
             'status': True,
@@ -171,8 +171,8 @@ def create_app(test_config=None):
             author.update()
 
         except Exception as e:
-            print('we couldnt create the object. Reason :', e)
-            abort(500)
+            print('Object creation failed:', e)
+            abort(400)
 
         return jsonify({
             'status': True,
@@ -200,8 +200,8 @@ def create_app(test_config=None):
             book.update()
 
         except Exception as e:
-            print('Object creation failer:', e)
-            abort(500)
+            print('Object creation failed:', e)
+            abort(400)
 
         return jsonify({
             'status': True,
