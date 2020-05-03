@@ -70,7 +70,7 @@ def create_app(test_config=None):
         try:
             selection.delete()
         except Exception as e:
-            print('it could not be deleted', e)
+            print('Author could not be deleted!', e)
 
         return jsonify({
             'status': True,
@@ -183,11 +183,9 @@ def create_app(test_config=None):
     @requires_auth('patch:books')
     def patch_books(payload, id):
         res = request.get_json()
-
-        if not res:
-            abort(404)
-
         book = Book.query.get(id)
+        if not res or not book:
+            abort(404)
 
         try:
             if 'title' in res:
@@ -209,7 +207,6 @@ def create_app(test_config=None):
         })
 
     # Error Handling
-
     @app.errorhandler(400)
     def bad_request(error):
         return jsonify({
